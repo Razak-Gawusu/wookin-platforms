@@ -1,0 +1,84 @@
+html {
+  --white: #fff;
+  --white-alt: #FCFCFC;
+  --black: #1A1A1A;
+  --dark: #333333;
+  --grey: hsl(230 35 75 50%);
+  --error: #D92D20;
+  --grey-50: #F9FAFB;
+  --grey-100: #F4F4F6;
+  --grey-150: #E5E6EB;
+  --grey-200: #D3D5DA;
+  --grey-250: #9EA3AE;
+  --grey-300: #6C727F;
+  --grey-400: #4D5461;
+  --grey-500: #394150;
+  --grey-600: #212936;
+  --grey-700: #161D21;
+  --darkOrange: #E8B336;
+  --lightYellow: #F7F3D7;
+  --lightBlue: #CDE9F6;
+  --primary: #212666;
+  --blue: #184eca;
+  --blue-50: #eff9ff;
+  --blue-100: #d6eeff;
+
+
+
+  --fs-heading-xl: 6.4rem;
+  --fs-heading-lg: 3.8rem;
+  --fs-heading-md: 3.4rem;
+  --fs-heading-sm: 2.8rem;
+  --fs-heading-xm: 2.4rem;
+  --fs-text-xl: 2.2rem;
+  --fs-text-lg: 1.8rem;
+  --fs-text-md: 1.6rem;
+  --fs-text-sm: 1.4rem;
+  --fs-text-xm: 1.2rem;
+
+  --max-width: 1640px;
+  font-size: 62.5%;
+}
+
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+  "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+  sans-serif;  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  background-color: var(--white);
+  color: var(--black);
+  font-size: 1.6rem;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  scroll-margin-block: 1rem;
+  scroll-behavior: smooth;
+}
+
+h1,h2,h3,h4,h5,h6,p{
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  max-width: 100%;
+}
+
+.container {
+  width: 90%;
+  max-width: var(--max-width);
+  margin: auto;
+}
+
+@media screen and (max-width: 800px) {
+  .container {
+    width: 97%;
+  }
+}
