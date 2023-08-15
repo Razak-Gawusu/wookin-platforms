@@ -1,25 +1,35 @@
 import styled from "@emotion/styled";
 import PropTypes from "prop-types";
 import PropertyCard from "./PropertyCard";
+import { Grid, Spinner } from "@chakra-ui/react";
 
-export function PropertyCardList({ properties }) {
+export function PropertyCardList({ properties, isLoading }) {
   return (
-    <Root>
-      {properties.map((property) => {
-        return (
-          <PropertyCard
-            key={property.id}
-            propertyImageUrl={property.propertyImageUrl}
-            agent={property.agent}
-          />
-        );
-      })}
-    </Root>
+    <>
+      {isLoading ? (
+        <Grid h={"70vh"} placeItems={"center"}>
+          <Spinner size={"xl"} />
+        </Grid>
+      ) : (
+        <Root>
+          {properties.map((property) => {
+            return (
+              <PropertyCard
+                key={property.id}
+                propertyImageUrl={property.image}
+                agent={property.agent}
+              />
+            );
+          })}
+        </Root>
+      )}
+    </>
   );
 }
 
 PropertyCardList.propTypes = {
   properties: PropTypes.array,
+  isLoading: PropTypes.bool,
 };
 
 const Root = styled.div`

@@ -1,9 +1,15 @@
 import styled from "@emotion/styled";
 import React from "react";
 import { Text, Stack } from "@chakra-ui/react";
-import { BaseButton } from "../shared";
+import { BaseButton, BaseDropdown } from "../shared";
+import { useAgents, useCreateHome, useProperties } from "../../hooks";
+import { getAllAgents, getImages } from "../../utils";
 export function CreateHome() {
   const [formData, setFormData] = React.useState({});
+
+  const { agents } = useAgents();
+  const { properties } = useProperties();
+  const {} = useCreateHome(image, agent, created_at);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -17,15 +23,21 @@ export function CreateHome() {
       </Text>
       <form onSubmit={handleSubmit}>
         <div className='form__group'>
-          <input type='text' placeholder='Image URL' />
+          <BaseDropdown
+            options={getImages(properties)}
+            placeholder='Select Agent'
+          />{" "}
         </div>
 
         <div className='form__group'>
-          <input type='text' placeholder='Agent' />
+          <BaseDropdown
+            options={getAllAgents(agents)}
+            placeholder='Select Agent'
+          />
         </div>
 
         <div className='form__group'>
-          <input type='date' />
+          <input className='input' type='date' placeholder='Enter CreatedAt' />
         </div>
         <BaseButton type={"submit"}>Submit</BaseButton>
       </form>
@@ -44,12 +56,12 @@ const Root = styled(Stack)`
     gap: 24px;
 
     .form__group {
-      input {
+      .input {
         padding: 8px;
         border: solid 1px var(--grey-150);
         width: 100%;
         border-radius: 4px;
-        height: 48px;
+        height: 45px;
       }
     }
   }

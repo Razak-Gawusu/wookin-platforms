@@ -1,24 +1,22 @@
 import styled from "@emotion/styled";
 import PropTypes from "prop-types";
-import { Avatar, MessageIcon, TelephoneIcon, ThreeDotsIcon } from "../index";
-import { joinNames } from "../../utils";
+import { MessageIcon, TelephoneIcon, ThreeDotsIcon } from "../index";
+import { Avatar } from "@chakra-ui/react";
 import { Stack } from "react-bootstrap";
 
 export default function PropertyCard({ propertyImageUrl, agent }) {
-  const { firstName, lastName, level, imageUrl } = agent;
+  const { name, rank, image } = agent;
   return (
     <Root>
       <div className='property__image'>
         <img src={propertyImageUrl} alt={propertyImageUrl} />
       </div>
       <div className='agent__info'>
-        <Avatar user={{ firstName, lastName, imageUrl }} />
+        <Avatar name={name} src={image} />
 
         <Stack color='red' className='agent__info--item'>
-          <p className='agent__name'>
-            {joinNames({ firstName, lastName, imageUrl })}
-          </p>
-          <p className='agent__details'>{`Estate Agent ${level || ""}`}</p>
+          <p className='agent__name'>{name}</p>
+          <p className='agent__details'>{`Estate Agent ${rank || ""}`}</p>
         </Stack>
 
         <div className='agent__info--item'>

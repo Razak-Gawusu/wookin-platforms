@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 
-export const useProperties = () => {
-  const [properties, setProperties] = React.useState([]);
+export const useAgents = () => {
+  const [agents, setAgents] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(false);
 
   const options = {
@@ -14,11 +14,11 @@ export const useProperties = () => {
   useEffect(() => {
     setIsLoading(true);
     fetch(
-      "https://ownkey-real-estate-main-3113cd8.d2.zuplo.dev/properties",
+      "https://ownkey-real-estate-main-3113cd8.d2.zuplo.dev/agents",
       options
     )
       .then((response) => response.json())
-      .then((response) => setProperties(response))
+      .then((response) => setAgents(response))
       .catch((err) => console.error(err))
       .finally(() => {
         setIsLoading(false);
@@ -26,7 +26,7 @@ export const useProperties = () => {
   }, []);
 
   return {
-    properties,
+    agents,
     isLoading,
   };
 };

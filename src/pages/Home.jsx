@@ -5,10 +5,12 @@ import {
   PropertyCardList,
   MainFilter,
 } from "../components";
-import { properties, countries, types, expertise, agents } from "../mocks";
-import { useFilters } from "../hooks";
+import { countries, types, expertise } from "../mocks";
+import { useAgents, useFilters, useProperties } from "../hooks";
 import { Flex, Stack, Text } from "@chakra-ui/react";
 export function Home() {
+  const { properties, isLoading } = useProperties();
+  const { agents } = useAgents();
   const {
     filtered: countriesFiltered,
     setFiltered: countriesSetFiltered,
@@ -42,17 +44,7 @@ export function Home() {
     toggleShowMore: agentsToggleShowMore,
   } = useFilters(agents);
 
-  const options = {
-    method: "GET",
-    headers: {
-      Authorization: "Bearer zpka_5f82bcba648243c995e2a0e7e1f7fdf9_73f7f3e0",
-    },
-  };
-
-  fetch("https://ownkey-real-estate-main-3113cd8.d2.zuplo.dev/agents", options)
-    .then((response) => response.json())
-    .then((response) => console.log(response))
-    .catch((err) => console.error(err));
+  console.log({ agents });
 
   return (
     <Root>
@@ -98,7 +90,7 @@ export function Home() {
 
         <Stack className='main__content--item'>
           <Flex alignItems={"center"} justifyContent={"space-between"}>
-            <Text fontWeight={500}>Showing 9 results</Text>
+            <Text fontWeight={500}>Showing {properties?.length} results</Text>
 
             <BaseDropdown
               w={"150px"}
@@ -109,7 +101,7 @@ export function Home() {
               ]}
             />
           </Flex>
-          <PropertyCardList properties={properties} />
+          <PropertyCardList properties={properties} isLoading={isLoading} />
         </Stack>
       </div>
     </Root>
