@@ -1,37 +1,53 @@
 import styled from "@emotion/styled";
+import axios from "axios";
 import React from "react";
 import { Text, Stack } from "@chakra-ui/react";
 import { BaseButton, BaseDropdown } from "../shared";
-import { useAgents, useCreateHome, useProperties } from "../../hooks";
+import { useAgents, useProperties } from "../../hooks";
 import { getAllAgents, getImages } from "../../utils";
 export function CreateHome() {
-  const [formData, setFormData] = React.useState({});
+  const [formData, setFormData] = React.useState({
+    agent: "",
+    image: "",
+    created_at: "",
+  });
 
   const { agents } = useAgents();
   const { properties } = useProperties();
 
+  // const options = {
+  //   method: "POST",
+  //   mode: "cors",
+  //   body: JSON.stringify({
+  //     image: formData.image,
+  //     agent: formData.agent,
+  //     created_at: formData.created_at,
+  //   }),
+  //   headers: {
+  //     Authorization: `Bearer ${import.meta.env.VITE_WOOKIN_KEY}`,
+  //     "Content-type": "application/json; charset=UTF-8",
+  //   },
+  // };
+
   const onHandleSubmit = () => {
-    fetch("https://ownkey-real-estate-main-3113cd8.d2.zuplo.dev/properties", {
-      method: "POST",
-
-      body: JSON.stringify({
-        image,
-        agent,
-        created_at,
-      }),
-
-      headers: {
-        "Content-type": "application/json; charset=UTF-8",
-        Authorization: `Bearer ${import.meta.env.VITE_WOOKIN_KEY}`,
+    axios.post(
+      `https://ownkey-real-estate-main-3113cd8.d2.zuplo.dev/properties?apikey=${
+        import.meta.env.VITE_WOOKIN_KEY
+      }`,
+      {
+        image: formData.image,
+        agent: formData.agent,
+        created_at: formData.created_at,
       },
-    })
-      .then((response) => response.json())
-      .then((json) => console.log(json));
+      {
+        headers: { Authorization: `Bearer ${import.meta.env.VITE_WOOKIN_KEY}` },
+      }
+    );
   };
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log("submit");
+    onHandleSubmit();
   }
 
   return (
@@ -43,19 +59,47 @@ export function CreateHome() {
         <div className='form__group'>
           <BaseDropdown
             options={getImages(properties)}
-            placeholder='Select Agent'
-          />{" "}
+            placeholder='Select image'
+            onChange={(e) =>
+              setFormData((prev) => {
+                return {
+                  ...prev,
+                  image: e.value,
+                };
+              })
+            }
+          />
         </div>
 
         <div className='form__group'>
           <BaseDropdown
             options={getAllAgents(agents)}
             placeholder='Select Agent'
+            onChange={(e) =>
+              setFormData((prev) => {
+                return {
+                  ...prev,
+                  agent: e.value,
+                };
+              })
+            }
           />
         </div>
 
         <div className='form__group'>
-          <input className='input' type='date' placeholder='Enter CreatedAt' />
+          <input
+            className='input'
+            type='date'
+            placeholder='Enter CreatedAt'
+            onChange={(e) =>
+              setFormData((prev) => {
+                return {
+                  ...prev,
+                  created_at: e.target.value,
+                };
+              })
+            }
+          />
         </div>
         <BaseButton type={"submit"}>Submit</BaseButton>
       </form>
