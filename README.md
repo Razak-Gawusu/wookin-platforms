@@ -1,4 +1,4 @@
-# Kanban Web
+# Wookin-Platforms Web
 
 ## Steps to setup locally
 
