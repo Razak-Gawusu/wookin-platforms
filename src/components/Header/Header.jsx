@@ -31,7 +31,7 @@ export function Header() {
           alignItems={"center"}
           justifyContent={"space-between"}
         >
-          <Search />
+          <Search placeholder={"search"} />
           <BaseButton
             icon={<PlusIcon />}
             w={"150px"}
@@ -44,7 +44,7 @@ export function Header() {
           <Avatar
             user={{ firstName: "Kofi", lastName: "Abbey", imageUrl: "" }}
           />
-          <button onClick={openMobileNav} className='menu'>
+          <button onClick={openMobileNav} className="menu">
             <BurgerMenuIcon />
           </button>
         </Flex>
@@ -54,7 +54,7 @@ export function Header() {
         <CreateHome />
       </Modal>
 
-      <MobileNav className='mobile__nav' ref={ref}>
+      <MobileNav className="mobile__nav" ref={ref}>
         <Sidebar mobile closeMenu={closeMobileNav} />
       </MobileNav>
     </>
