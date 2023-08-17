@@ -7,7 +7,7 @@
 Navigate to directory where you would want to place wookin-platforms project and enter the command below to clone the project
 
 ```
-git clone https://github.com/Razak-Gawusu/kanban-frontend/tree
+git clone https://github.com/Razak-Gawusu/wookin-platforms.git
 ```
 
 ### Step 2
