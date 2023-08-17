@@ -1,8 +1,32 @@
-# React + Vite
+# Kanban Web
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Steps to setup locally
 
-Currently, two official plugins are available:
+### Step 1
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Navigate to directory where you would want to place wookin-platforms project and enter the command below to clone the project
+
+```
+git clone https://github.com/Razak-Gawusu/kanban-frontend/tree
+```
+
+### Step 2
+
+Change directory into `wookin-platforms` and install the packages
+
+```
+cd wookin-platforms
+yarn install
+```
+
+### Step 3
+
+Create `.env` file and create a variable `VITE_WOOKIN_KEY` and assign your `YOUR_KEY` to it.
+
+### Step 4
+
+npm run dev
+
+```
+yarn run dev
+```

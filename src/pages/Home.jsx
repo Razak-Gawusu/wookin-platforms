@@ -44,14 +44,12 @@ export function Home() {
     toggleShowMore: agentsToggleShowMore,
   } = useFilters(agents);
 
-  console.log({ agents });
-
   return (
     <Root>
       <Header />
 
-      <div className='main__content'>
-        <Stack className='main__content--item'>
+      <div className="main__content">
+        <Stack className="main__content--item">
           <MainFilter
             countries={{
               filtered: countriesFiltered,
@@ -88,7 +86,7 @@ export function Home() {
           />
         </Stack>
 
-        <Stack className='main__content--item'>
+        <Stack className="main__content--item">
           <Flex alignItems={"center"} justifyContent={"space-between"}>
             <Text fontWeight={500}>Showing {properties?.length} results</Text>
 
@@ -101,7 +99,11 @@ export function Home() {
               ]}
             />
           </Flex>
-          <PropertyCardList properties={properties} isLoading={isLoading} />
+          <PropertyCardList
+            properties={properties}
+            isLoading={isLoading}
+            isEmpty={properties.length === 0}
+          />
         </Stack>
       </div>
     </Root>

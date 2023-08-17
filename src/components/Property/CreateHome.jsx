@@ -1,11 +1,14 @@
 import styled from "@emotion/styled";
 import axios from "axios";
 import React from "react";
+import { useToastify } from "../../hooks";
 import { Text, Stack } from "@chakra-ui/react";
 import { BaseButton, BaseDropdown } from "../shared";
 import { useAgents, useProperties } from "../../hooks";
 import { getAllAgents, getImages } from "../../utils";
+
 export function CreateHome() {
+  const { successToast } = useToastify();
   const [formData, setFormData] = React.useState({
     agent: "",
     image: "",
@@ -14,20 +17,6 @@ export function CreateHome() {
 
   const { agents } = useAgents();
   const { properties } = useProperties();
-
-  // const options = {
-  //   method: "POST",
-  //   mode: "cors",
-  //   body: JSON.stringify({
-  //     image: formData.image,
-  //     agent: formData.agent,
-  //     created_at: formData.created_at,
-  //   }),
-  //   headers: {
-  //     Authorization: `Bearer ${import.meta.env.VITE_WOOKIN_KEY}`,
-  //     "Content-type": "application/json; charset=UTF-8",
-  //   },
-  // };
 
   const onHandleSubmit = () => {
     axios.post(
@@ -43,6 +32,7 @@ export function CreateHome() {
         headers: { Authorization: `Bearer ${import.meta.env.VITE_WOOKIN_KEY}` },
       }
     );
+    successToast("home successfully created");
   };
 
   function handleSubmit(e) {
@@ -56,10 +46,10 @@ export function CreateHome() {
         Add Home
       </Text>
       <form onSubmit={handleSubmit}>
-        <div className='form__group'>
+        <div className="form__group">
           <BaseDropdown
             options={getImages(properties)}
-            placeholder='Select image'
+            placeholder="Select image"
             onChange={(e) =>
               setFormData((prev) => {
                 return {
@@ -71,10 +61,10 @@ export function CreateHome() {
           />
         </div>
 
-        <div className='form__group'>
+        <div className="form__group">
           <BaseDropdown
             options={getAllAgents(agents)}
-            placeholder='Select Agent'
+            placeholder="Select Agent"
             onChange={(e) =>
               setFormData((prev) => {
                 return {
@@ -86,11 +76,11 @@ export function CreateHome() {
           />
         </div>
 
-        <div className='form__group'>
+        <div className="form__group">
           <input
-            className='input'
-            type='date'
-            placeholder='Enter CreatedAt'
+            className="input"
+            type="date"
+            placeholder="Enter CreatedAt"
             onChange={(e) =>
               setFormData((prev) => {
                 return {
